@@ -20,6 +20,7 @@ describe VurlsController do
 
   describe "when editing a vurl" do
     before(:each) do
+      @vurl.stub!(:id).and_return(17)
       get :edit, :id => @vurl.id
     end
     it "should redirect when the edit action is called" do
@@ -113,6 +114,7 @@ describe VurlsController do
   describe "when previewing vurls" do
     it "should render the preview form" do
       @vurl.url = 'http://hashrocket.com/'
+      @vurl.slug = 'ZZ'
       Vurl.stub!(:find_by_slug).and_return(@vurl)
       get :preview, :slug => @vurl.slug
       response.should render_template(:preview)
