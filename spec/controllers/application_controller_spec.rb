@@ -5,7 +5,7 @@ describe ApplicationController do
   before { @user = User.new }
 
   describe "#current_user" do
-    subject { controller.current_user }
+    subject { controller.send(:current_user) }
     it "references a previously loaded user" do
       controller.instance_variable_set(:@current_user, @user)
       should == @user

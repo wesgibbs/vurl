@@ -8,12 +8,12 @@ class ApplicationController < ActionController::Base
   # Uncomment the :secret if you're not using the cookie session store
   protect_from_forgery # :secret => '5ee0c1f9ce72a776ebba8a8c3338e3d2'
 
+  protected
+
   def current_user
     @current_user ||= (load_user_from_cookie || create_user)
   end
   helper_method :current_user
-
-  private
 
   def load_user_from_cookie
     User.find_by_claim_code(cookies[:claim_code]) if cookies[:claim_code]
