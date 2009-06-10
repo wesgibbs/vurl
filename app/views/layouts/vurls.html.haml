@@ -22,6 +22,10 @@
               .tagline
                 A URL shortener by
                 = link_to "Veez", 'http://mattremsik.com/'
+        #login_container
+          == Welcome, #{current_user.name}!
+          - if current_user.unclaimed?
+            = link_to "(claim this account)", claim_user_path(current_user), :id => 'claim_this_account_link'
         #body_container.span-18.last
           %p.flash
             = flash[:notice]
