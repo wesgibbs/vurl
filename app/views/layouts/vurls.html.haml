@@ -27,8 +27,9 @@
           - if current_user.unclaimed?
             = link_to "(claim this account)", claim_user_path(current_user), :id => 'claim_this_account_link'
         #body_container.span-18.last
-          %p.flash
-            = flash[:notice]
+          - %w(error notice success).each do |status|
+            - if flash[status.to_sym]
+              %p{:class => status}= flash[status.to_sym] if flash[status.to_sym]
           = yield
         #footer_container.span-18.last
           .js_widget.span-12
