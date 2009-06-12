@@ -25,7 +25,9 @@
         #login_container
           == Welcome, #{current_user.name}!
           - if current_user.unclaimed?
-            = link_to "(claim this account)", claim_user_path(current_user), :id => 'claim_this_account_link'
+            = link_to "(claim this account)", claim_user_path(current_user.claim_code), :id => 'claim_this_account_link'
+          - else
+            = link_to "edit my profile", edit_user_path(current_user)
         #body_container.span-18.last
           - %w(error notice success).each do |status|
             - if flash[status.to_sym]

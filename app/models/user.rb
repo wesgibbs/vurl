@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
     claim_code.blank?
   end
 
+  def claim!
+    self.update_attribute(:claim_code, nil)
+  end
+
   def unclaimed?
     !claimed?
   end

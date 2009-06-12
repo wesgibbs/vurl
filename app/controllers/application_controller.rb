@@ -16,12 +16,12 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def load_user_from_cookie
-    User.find_by_claim_code(cookies[:claim_code]) if cookies[:claim_code]
+    User.find_by_id(cookies[:user_id]) if cookies[:user_id]
   end
 
   def create_user
     user = User.create!
-    cookies[:claim_code] = user.claim_code
+    cookies[:user_id] = user.id
     user
   end
 end

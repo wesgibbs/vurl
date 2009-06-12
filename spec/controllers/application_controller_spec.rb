@@ -24,12 +24,12 @@ describe ApplicationController do
   describe "#load_user_from_cookie" do
     subject { controller.send(:load_user_from_cookie) }
     it "loads a user with the id if there is one" do
-      cookies[:claim_code] = 'a claim code'
-      User.should_receive(:find_by_claim_code).with('a claim code').and_return(@user)
+      cookies[:user_id] = 18
+      User.should_receive(:find_by_id).with(18).and_return(@user)
       should == @user
     end
     it "returns nil without a claim code" do
-      User.should_receive(:find_by_claim_code).never
+      User.should_receive(:find_by_id).never
       should be_nil
     end
   end
@@ -43,9 +43,9 @@ describe ApplicationController do
     end
     it "stores a claim code cookie" do
       User.stub!(:create!).and_return(@user)
-      @user.claim_code = 'a new claim code'
+      @user.stub!(:id).and_return(17)
       should be_a_kind_of(User)
-      @cookies[:claim_code].should == @user.claim_code
+      @cookies[:user_id].should == @user.id
     end
   end
 end

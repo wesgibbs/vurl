@@ -56,3 +56,7 @@ li.most_popular_vurl {
 #footer_container {
 	background-image:url(../images/slant.png);
 }
+
+form .row { width: 500px; }
+form .row .field_name { width: 140px; float:left; }
+form .row .field_value { width: 340px; }
