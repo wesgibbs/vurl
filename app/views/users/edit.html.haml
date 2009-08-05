@@ -1,0 +1,18 @@
+%h2 Claim your account
+
+- form_for @user do |f|
+  .row
+    .field_name Name
+    .field_value= f.text_field :name
+  .row
+    .field_name Email
+    .field_value= f.text_field :email
+  .row
+    .field_name Website
+    .field_value= f.text_field :website
+  .row
+    .field_name Blog
+    .field_value= f.text_field :blog
+  .row
+    .field_name &nbsp;
+    .field_value= f.submit

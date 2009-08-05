@@ -11,13 +11,17 @@ body {
 }
 #header_container #logo_link {
   display: block;
-  height: 152px;
+  height: 130px;
   width: 710px;
 }
-#header_container a { color: #FFF; text-decoration: none;}
+#header_container a { text-decoration: none;}
 #header_container.content {
   padding: 20px;
   margin: 0 10px;
+}
+
+#header_container #profile {
+  text-align:right;
 }
 
 #body_container {

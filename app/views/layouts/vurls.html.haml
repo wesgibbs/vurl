@@ -16,9 +16,18 @@
       #page_container.span-18.last
         #header_container.span-18.last
           = link_to "", new_vurl_path, :id => 'logo_link'
+          #profile
+            == Logged in as #{current_user.name}
+            |
+            - if current_user.claimed?
+              = link_to 'My Profile', edit_user_path(current_user)
+            - else
+              = link_to 'Claim this user', claim_user_path(current_user.claim_code)
         #body_container.span-18.last
-          %p.flash
-            = flash[:notice]
+          - [:success, :notice, :error, :failure].each do |message_type|
+            - if flash[message_type]
+              %div{:class => message_type.to_s}
+                = flash[message_type]
           = yield
         #footer_container.span-18.last
           .js_widget.span-9

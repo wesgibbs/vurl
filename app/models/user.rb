@@ -3,6 +3,8 @@ require 'digest'
 class User < ActiveRecord::Base
   has_many :vurls
 
+  validates_presence_of :email, :unless => proc {|user| user.new_record? }
+
   before_create :generate_claim_code, :set_default_name
 
   def claimed?
