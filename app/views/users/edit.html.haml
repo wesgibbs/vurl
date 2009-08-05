@@ -16,3 +16,13 @@
   .row
     .field_name &nbsp;
     .field_value= f.submit
+
+%h2 My Vurls
+- if @user.vurls.any?
+  %li
+    - @user.vurls.each do |vurl|
+      %li
+        = link_to vurl.title, vurl.url
+        == (#{vurl.clicks_count} clicks)
+- else
+  You haven't created any vurls yet!
