@@ -151,3 +151,17 @@ body {
   margin: 20px 25px 20px 25px;
   float: left;
 }
+
+#profile_container {
+  margin-top: 20px;
+}
+#profile_container div {
+  float: left;
+  width: 345px;
+}
+#profile_container #profile_form {
+  margin: 0 10px 0 0;
+}
+#profile_container #profile_vurls {
+  margin: 0 0 0 10px;
+}
