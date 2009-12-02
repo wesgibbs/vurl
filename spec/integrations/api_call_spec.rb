@@ -18,6 +18,22 @@ describe "Create Vurls via the API" do
     end
   end
 
+  context "when the request comes from a spammer" do
+    before do
+      header "Remote-Addr", "76.168.113.69"
+    end
+
+    it "returns a json object with a rebuke for a json request" do
+      visit shorten_path(:format => :json, :url => 'http://veez.us')
+      response.body.should == {:errors => 'Get thee behind me, spammer'}.to_json
+    end
+
+    it "returns a plain text response with a rebuke for an html request" do
+      visit shorten_path(:url => 'http://veez.us')
+      response.body.should == 'Get thee behind me, spammer'
+    end
+  end
+
   context "when unsuccessful" do
     it "returns a json object with the errors for a json request" do
       visit shorten_path(:format => :json, :url => 'whatthe?')
